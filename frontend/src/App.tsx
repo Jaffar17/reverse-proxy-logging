@@ -3,6 +3,7 @@ import {Routes, Route, Navigate} from "react-router-dom";
 import {AuthContext} from "./context/auth-context.tsx";
 import DashboardPage from "./pages/dashboard-page.tsx";
 import LoginPage from "./pages/login-page.tsx";
+import './App.css'
 
 export default function App() {
     const auth = React.useContext(AuthContext);
