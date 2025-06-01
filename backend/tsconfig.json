@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    // All the shared flags come from the root, so here
+    // we just override/add what’s specific to Node/Express:
+    "rootDir": "src",             // your TypeScript source folder
+    "outDir": "dist",             // where to emit compiled JS
+    "module": "commonjs",         // ensure Node can require() it
+    "lib": ["es2016"],            // only the ES2016+ runtime types
+    "types": ["node"]             // include Node.js built-in types
+  },
+  "include": ["src/**/*"]
+}
