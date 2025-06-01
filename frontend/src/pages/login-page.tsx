@@ -66,7 +66,7 @@ export default function LoginPage() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="Enter your username"
-                        className="mt-1 w-full h-40 px-3 py-2 text-gray-900 border border-gray-300 rounded"
+                        className="mt-1 w-full h-40 px-3 py-2 text-red-800 border border-gray-300 rounded"
                     />
                 </div>
 
