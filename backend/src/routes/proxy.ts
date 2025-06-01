@@ -4,7 +4,7 @@ import {Log} from "../models/log";
 
 const proxyRouter = Router();
 
-// Logging middleware: runs on every request to /api/proxy/*
+// this runs on every request to /api/proxy/* (it is logging middleware)
 proxyRouter.use(async (req: Request, res: Response, next: NextFunction) => {
     let logId: string;
     console.log("Proxying request for:", req.originalUrl);
@@ -23,7 +23,7 @@ proxyRouter.use(async (req: Request, res: Response, next: NextFunction) => {
         console.error("Error saving proxy log:", err);
     }
 
-    // Update log with status code
+    // Updating the existing log with status code
     res.on("finish", async () => {
         if (!logId) return;
         try {
@@ -36,7 +36,7 @@ proxyRouter.use(async (req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-// Proxy middleware: forward to given JSONPlaceholder API
+// this forwards incoming request to given JSONPlaceholder API
 const proxyOptions = {
     target: "https://jsonplaceholder.typicode.com",
     changeOrigin: true,
