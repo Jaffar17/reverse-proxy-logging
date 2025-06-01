@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import proxyRouter from "./routes/proxy";
 
 dotenv.config();
 
@@ -31,3 +32,5 @@ mongoose
 app.get("/health", (_req: Request, res: Response) => {
     res.json({ status: "Server is healthy" });
 });
+
+app.use("/api/proxy", proxyRouter);
