@@ -1,14 +1,14 @@
-import {useState, useContext} from "react";
-import type {FormEvent} from "react";
-import {useNavigate} from "react-router-dom";
-import {Input} from "../components/ui/input";
-import {Button} from "../components/ui/button";
-import {AuthContext} from "../context/auth-context";
+import { useState, useContext } from "react";
+import type { FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import { AuthContext } from "../context/auth-context";
 
 export default function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false); // add this line
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
     const auth = useContext(AuthContext);
@@ -20,17 +20,17 @@ export default function LoginPage() {
         try {
             const resp = await fetch("/api/auth/login", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({username, password}),
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password }),
             });
 
             if (!resp.ok) {
-                const {message} = await resp.json();
+                const { message } = await resp.json();
                 setError(message || "Login failed");
                 return;
             }
 
-            const {token} = await resp.json();
+            const { token } = await resp.json();
             auth?.setToken(token);
             navigate("/dashboard");
         } catch (err: any) {
@@ -54,8 +54,11 @@ export default function LoginPage() {
                     </div>
                 )}
 
-                <div className="">
-                    <label htmlFor="username" className="block text-sm font-medium text-gray-600 text-left">
+                <div>
+                    <label
+                        htmlFor="username"
+                        className="block text-sm font-medium text-gray-600 text-left"
+                    >
                         Username
                     </label>
                     <Input
@@ -63,12 +66,15 @@ export default function LoginPage() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="Enter your username"
-                        className="mt-1 w-full h-12"
+                        className="mt-1 w-full h-40 px-3 py-2 text-gray-900 border border-gray-300 rounded"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-gray-600 text-left">
+                    <label
+                        htmlFor="password"
+                        className="block text-sm font-medium text-gray-600 text-left"
+                    >
                         Password
                     </label>
                     <Input
@@ -77,7 +83,7 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password"
-                        className="mt-1 w-full h-12"
+                        className="mt-1 w-full h-12 px-3 py-2 text-gray-900 border border-gray-300 rounded"
                     />
                     <div className="mt-2 flex items-center space-x-2">
                         <input

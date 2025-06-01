@@ -32,6 +32,7 @@ authRouter.post("/register", async (req: Request, res: Response) => {
 
 // @ts-ignore
 authRouter.post("/login", async (req: Request, res: Response) => {
+    console.log('Login')
     const {username, password} = req.body;
     if (!username || !password) {
         return res.status(400).json({message: "username and password required"});
