@@ -2,10 +2,13 @@ import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import proxyRouter from "./routes/proxy";
+import authRouter from "./routes/auth";
+import logsRouter from "./routes/logs";
 
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 4545;
 const mongoUri = process.env.MONGODB_URI;
 
@@ -34,3 +37,7 @@ app.get("/health", (_req: Request, res: Response) => {
 });
 
 app.use("/api/proxy", proxyRouter);
+
+app.use("/api/auth", authRouter);
+
+app.use("/api/logs", logsRouter);
